@@ -110,7 +110,7 @@ const ResourcesPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: (i % ITEMS_PER_PAGE) * 0.05 }}
-                  className="rounded-lg overflow-hidden group relative aspect-[3/4] cursor-pointer"
+                  className="rounded-lg overflow-hidden group relative aspect-[3/3] cursor-pointer"
                   onClick={() => setSelectedImage(i)}
                 >
                   <img src={r.image} alt={t(r.title, r.titleHi)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
