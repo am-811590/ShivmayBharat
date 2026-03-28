@@ -97,3 +97,30 @@
     font-family: 'DM Serif Display', serif;
   }
 }
+/* Optional: Add hover pause and responsive adjustments */
+.animate-marquee-infinite:hover {
+  animation-play-state: paused;
+}
+
+/* Adjust animation speed for different screen sizes */
+@media (max-width: 768px) {
+  .animate-marquee-infinite {
+    animation-duration: 30s !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .animate-marquee-infinite {
+    animation-duration: 50s !important;
+  }
+}
+
+/* Smooth card hover effects */
+.marquee-card-hover {
+  transition: all 0.3s ease;
+}
+
+.marquee-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+}

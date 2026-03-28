@@ -108,6 +108,11 @@ export default {
           from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        // Add marquee animation keyframes
+        "marquee-infinite": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -119,6 +124,8 @@ export default {
         "count-up": "count-up 0.6s ease-out forwards",
         enter: "fade-in 0.3s ease-out, scale-in 0.2s ease-out",
         exit: "fade-out 0.3s ease-out",
+        // Add marquee animation
+        "marquee-infinite": "marquee-infinite 5s linear infinite",
       },
     },
   },

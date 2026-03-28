@@ -36,7 +36,7 @@ const teamMembers = [
     twitter: "#",
   },
   {
-    name: "Ranjeet Rushwaha",
+    name: "Ranjeet Kushwaha",
     nameHi: "रंजीत कुशवाहा",
     role: "Rashtriya Upadhyaksh, Prakriti sena",
     roleHi: "राष्ट्रीय उपाध्यक्ष, प्रकृति सेना",
