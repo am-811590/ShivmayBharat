@@ -323,7 +323,7 @@ const ResponsiveTeamCarousel = ({ teamMembers }) => {
       <div className="flex items-center justify-center gap-6 mt-8">
         <button 
           onClick={scrollPrev}
-          className="w-12 h-12 flex items-center justify-center text-primary hover:text-primary-dark transition-all duration-300 hover:scale-110"
+          className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
           aria-label={t("Previous", "पिछला")}
         >
           <ChevronLeft className="w-6 h-6" />
@@ -347,7 +347,7 @@ const ResponsiveTeamCarousel = ({ teamMembers }) => {
         
         <button 
           onClick={scrollNext}
-          className="w-12 h-12 flex items-center justify-center text-primary hover:text-primary-dark transition-all duration-300 hover:scale-110"
+          className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
           aria-label={t("Next", "अगला")}
         >
           <ChevronRight className="w-6 h-6" />

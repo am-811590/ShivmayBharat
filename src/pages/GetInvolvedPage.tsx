@@ -2,10 +2,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import DonationCTA from "@/components/DonationCTA";
-import { motion } from "framer-motion";
-import { Users, HeartHandshake, Megaphone, ChevronDown, Quote } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Users, HeartHandshake, Megaphone, ChevronDown, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import missionImage from "/selected plantation/IMG-20190605-WA0111_result.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
@@ -19,8 +19,106 @@ const opportunities = [
 ];
 
 const volunteerTestimonials = [
-  { quote: "Volunteering on weekends has been the most fulfilling experience. Seeing saplings I planted grow into trees gives me immense joy.", quoteHi: "सप्ताहांत में स्वयंसेवा करना सबसे संतोषजनक अनुभव रहा है। मेरे लगाए पौधों को पेड़ बनते देखकर अपार खुशी मिलती है।", name: "Deepa R.", nameHi: "दीपा आर.", role: "Weekend Volunteer", roleHi: "सप्ताहांत स्वयंसेवक" },
-  { quote: "The community participation program helped our neighbourhood adopt 50 trees. Now our street is the greenest in the area!", quoteHi: "सामुदायिक भागीदारी कार्यक्रम ने हमारे मोहल्ले को 50 पेड़ गोद लेने में मदद की। अब हमारी गली क्षेत्र में सबसे हरी-भरी है!", name: "Karthik S.", nameHi: "कार्तिक एस.", role: "Community Volunteer", roleHi: "सामुदायिक स्वयंसेवक" },
+  { 
+    quote: "Planting Belpatra trees under Shivmay Bharat Mission has connected me with my spiritual roots. Every morning, offering water to the sapling I planted brings peace to my soul.", 
+    quoteHi: "शिवमय भारत मिशन के तहत बेलपत्र के पेड़ लगाने ने मुझे मेरी आध्यात्मिक जड़ों से जोड़ा। हर सुबह, मेरे द्वारा लगाए गए पौधे को जल अर्पित करने से मेरी आत्मा को शांति मिलती है।", 
+    name: "Rajeshwari M.", 
+    nameHi: "राजेश्वरी एम.", 
+    role: "Spiritual Volunteer", 
+    roleHi: "आध्यात्मिक स्वयंसेवक",
+    location: "Varanasi",
+    locationHi: "वाराणसी"
+  },
+  { 
+    quote: "Teaching children about environmental conservation through our workshops has been incredible. Their enthusiasm for planting trees gives me hope for our future.", 
+    quoteHi: "हमारी कार्यशालाओं के माध्यम से बच्चों को पर्यावरण संरक्षण के बारे में सिखाना अद्भुत रहा है। पेड़ लगाने के प्रति उनका उत्साह हमारे भविष्य के लिए आशा देता है।", 
+    name: "Suresh K.", 
+    nameHi: "सुरेश के.", 
+    role: "Youth Mentor", 
+    roleHi: "युवा मार्गदर्शक",
+    location: "Pune",
+    locationHi: "पुणे"
+  },
+  { 
+    quote: "The plantation drive in our village transformed barren land into a green sanctuary. Now we have more birds and cleaner air. This is real change!", 
+    quoteHi: "हमारे गांव में वृक्षारोपण अभियान ने बंजर भूमि को हरे-भरे अभयारण्य में बदल दिया। अब हमारे पास अधिक पक्षी और स्वच्छ हवा है। यह वास्तविक बदलाव है!", 
+    name: "Lakshman R.", 
+    nameHi: "लक्ष्मण आर.", 
+    role: "Village Coordinator", 
+    roleHi: "ग्राम समन्वयक",
+    location: "Rajasthan",
+    locationHi: "राजस्थान"
+  },
+  { 
+    quote: "As a college student, I found purpose in this mission. We've organized 15 plantation events this year alone. Every sapling planted is a promise to Mother Earth.", 
+    quoteHi: "एक कॉलेज छात्र के रूप में, मुझे इस मिशन में उद्देश्य मिला। हमने इस साल अकेले 15 वृक्षारोपण कार्यक्रम आयोजित किए हैं। लगाया गया हर पौधा धरती माता से एक वादा है।", 
+    name: "Anjali S.", 
+    nameHi: "अंजलि एस.", 
+    role: "Student Volunteer", 
+    roleHi: "छात्र स्वयंसेवक",
+    location: "Delhi NCR",
+    locationHi: "दिल्ली एनसीआर"
+  },
+  { 
+    quote: "Working with the team to distribute 10,000 Belpatra saplings was challenging but rewarding. Seeing families nurture these sacred trees makes it all worthwhile.", 
+    quoteHi: "टीम के साथ 10,000 बेलपत्र के पौधे वितरित करना चुनौतीपूर्ण लेकिन फलदायक था। परिवारों को इन पवित्र पेड़ों का पालन-पोषण करते देखना सब सार्थक कर देता है।", 
+    name: "Manoj T.", 
+    nameHi: "मनोज टी.", 
+    role: "Distribution Lead", 
+    roleHi: "वितरण प्रमुख",
+    location: "Lucknow",
+    locationHi: "लखनऊ"
+  },
+  { 
+    quote: "My grandmother taught me about the significance of Bel tree. Now I'm passing that wisdom to the next generation while planting these sacred trees across our city.", 
+    quoteHi: "मेरी दादी ने मुझे बेल वृक्ष के महत्व के बारे में सिखाया। अब मैं उस ज्ञान को अगली पीढ़ी तक पहुंचा रही हूं, साथ ही हमारे शहर भर में इन पवित्र पेड़ों को लगा रही हूं।", 
+    name: "Vidya N.", 
+    nameHi: "विद्या एन.", 
+    role: "Tradition Keeper", 
+    roleHi: "परंपरा संरक्षक",
+    location: "Mysore",
+    locationHi: "मैसूर"
+  },
+  { 
+    quote: "The water conservation workshops opened my eyes. We've implemented rainwater harvesting in our community, and now we have enough water for our trees even in dry months.", 
+    quoteHi: "जल संरक्षण कार्यशालाओं ने मेरी आंखें खोल दीं। हमने अपने समुदाय में वर्षा जल संचयन लागू किया है, और अब सूखे महीनों में भी हमारे पेड़ों के लिए पर्याप्त पानी है।", 
+    name: "Arvind P.", 
+    nameHi: "अरविंद पी.", 
+    role: "Water Conservationist", 
+    roleHi: "जल संरक्षणकर्ता",
+    location: "Ahmedabad",
+    locationHi: "अहमदाबाद"
+  },
+  { 
+    quote: "What started as a weekend activity became my life's mission. Seeing 500+ families adopt Belpatra trees in our area fills my heart with gratitude.", 
+    quoteHi: "जो सप्ताहांत की गतिविधि के रूप में शुरू हुआ, वह मेरे जीवन का मिशन बन गया। हमारे क्षेत्र में 500 से अधिक परिवारों को बेलपत्र के पेड़ गोद लेते देखकर मेरा दिल कृतज्ञता से भर जाता है।", 
+    name: "Geeta V.", 
+    nameHi: "गीता वी.", 
+    role: "Community Mobilizer", 
+    roleHi: "सामुदायिक संगठनकर्ता",
+    location: "Indore",
+    locationHi: "इंदौर"
+  },
+  { 
+    quote: "The impact goes beyond trees. This mission brings people together, bridges communities, and revives our cultural connection with nature. Truly transformative!", 
+    quoteHi: "प्रभाव पेड़ों से परे है। यह मिशन लोगों को एक साथ लाता है, समुदायों को जोड़ता है, और प्रकृति के साथ हमारे सांस्कृतिक संबंध को पुनर्जीवित करता है। वास्तव में परिवर्तनकारी!", 
+    name: "Priyanka J.", 
+    nameHi: "प्रियंका जे.", 
+    role: "Social Activist", 
+    roleHi: "सामाजिक कार्यकर्ता",
+    location: "Kolkata",
+    locationHi: "कोलकाता"
+  },
+  { 
+    quote: "From corporate employee to full-time environmentalist - this journey transformed me. Planting Belpatra trees is not just about greenery; it's about preserving our heritage.", 
+    quoteHi: "कॉर्पोरेट कर्मचारी से पूर्णकालिक पर्यावरणविद् तक - इस यात्रा ने मुझे बदल दिया। बेलपत्र के पेड़ लगाना केवल हरियाली के बारे में नहीं है; यह हमारी विरासत को संरक्षित करने के बारे में है।", 
+    name: "Vikram S.", 
+    nameHi: "विक्रम एस.", 
+    role: "Environmental Champion", 
+    roleHi: "पर्यावरण चैंपियन",
+    location: "Mumbai",
+    locationHi: "मुंबई"
+  }
 ];
 
 const faqsLeft = [
@@ -40,6 +138,186 @@ const faqsRight = [
 ];
 
 const nameRegex = /^[a-zA-Z\u0900-\u097F\s]+$/;
+
+// Helper hook to get number of cards to show based on screen size
+const useCardsPerView = () => {
+  const [cardsPerView, setCardsPerView] = useState(3);
+
+  useEffect(() => {
+    const updateCardsPerView = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setCardsPerView(1);
+      } else if (width < 1024) {
+        setCardsPerView(2);
+      } else {
+        setCardsPerView(3);
+      }
+    };
+
+    updateCardsPerView();
+    window.addEventListener('resize', updateCardsPerView);
+    return () => window.removeEventListener('resize', updateCardsPerView);
+  }, []);
+
+  return cardsPerView;
+};
+
+// Circular Infinite Carousel Component
+const CircularInfiniteCarousel = ({ testimonials, t }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const cardsPerView = useCardsPerView();
+  const autoPlayRef = useRef<NodeJS.Timeout>();
+  
+  // Create a circular array by repeating the testimonials
+  const circularTestimonials = [...testimonials, ...testimonials, ...testimonials];
+  
+  // Calculate the total number of sets needed to fill the screen
+  const totalSets = Math.ceil(testimonials.length / cardsPerView);
+  
+  // Get current cards to display - always shows exactly cardsPerView cards
+  const getCurrentCards = () => {
+    const startIndex = currentIndex % testimonials.length;
+    const cards = [];
+    
+    for (let i = 0; i < cardsPerView; i++) {
+      const cardIndex = (startIndex + i) % testimonials.length;
+      cards.push(testimonials[cardIndex]);
+    }
+    
+    return cards;
+  };
+
+  // Handle next set - move forward by cardsPerView
+  const nextSet = () => {
+    setCurrentIndex((prev) => (prev + cardsPerView) % testimonials.length);
+  };
+
+  // Handle previous set - move backward by cardsPerView
+  const prevSet = () => {
+    setCurrentIndex((prev) => (prev - cardsPerView + testimonials.length) % testimonials.length);
+  };
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (isAutoPlaying) {
+      autoPlayRef.current = setInterval(() => {
+        nextSet();
+      }, 2000);
+    }
+
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [isAutoPlaying, currentIndex, cardsPerView]);
+
+  // Pause auto-play on hover
+  const handleMouseEnter = () => {
+    setIsAutoPlaying(false);
+    if (autoPlayRef.current) {
+      clearInterval(autoPlayRef.current);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoPlaying(true);
+  };
+
+  const currentCards = getCurrentCards();
+  
+  // Calculate which set we're on (0 to totalSets-1)
+  const currentSet = Math.floor(currentIndex / cardsPerView) % totalSets;
+
+  return (
+    <div 
+      className="relative w-full"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Cards Container - Always shows exactly cardsPerView cards */}
+      <div className="flex justify-center gap-6 flex-wrap">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSet}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="flex justify-center gap-6 flex-wrap"
+          >
+            {currentCards.map((vt, idx) => (
+              <motion.div
+                key={`${currentSet}-${idx}-${vt.name}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-card rounded-lg p-6 border border-border w-[350px] md:w-[400px] hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                <Quote className="w-8 h-8 text-primary/30 mb-3" />
+                <p className="text-foreground italic leading-relaxed mb-4 line-clamp-4">
+                  "{t(vt.quote, vt.quoteHi)}"
+                </p>
+                <p className="font-semibold text-foreground text-sm">
+                  {t(vt.name, vt.nameHi)}
+                </p>
+                <p className="text-muted-foreground text-xs">
+                  {t(vt.role, vt.roleHi)}
+                </p>
+                {vt.location && (
+                  <p className="text-muted-foreground text-xs mt-1">
+                    {t(vt.location, vt.locationHi)}
+                  </p>
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Navigation Controls */}
+      <div className="flex items-center justify-center gap-4 mt-8">
+        <button
+          onClick={prevSet}
+          className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+          aria-label={t("Previous", "पिछला")}
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        
+        {/* Dots Indicator - Shows all possible unique sets */}
+        <div className="flex gap-2">
+          {Array.from({ length: totalSets }).map((_, idx) => {
+            // Calculate which unique combination of cards this dot represents
+            const isActive = idx === currentSet;
+            return (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx * cardsPerView)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "bg-primary w-6"
+                    : "bg-border hover:bg-muted"
+                }`}
+                aria-label={`${t("Go to set", "सेट पर जाएं")} ${idx + 1}`}
+              />
+            );
+          })}
+        </div>
+        
+        <button
+          onClick={nextSet}
+          className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+          aria-label={t("Next", "अगला")}
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const VolunteerForm = ({ t }: { t: (en: string, hi: string) => string }) => {
   const { toast } = useToast();
@@ -99,7 +377,6 @@ const VolunteerForm = ({ t }: { t: (en: string, hi: string) => string }) => {
           variant: "default",
         });
 
-        // Reset form
         setFirstName("");
         setLastName("");
         setEmail("");
@@ -244,20 +521,19 @@ const GetInvolvedPage = () => {
           </div>
         </section>
 
-        {/* Volunteer Testimonials */}
-        <section className="py-16 md:py-24 bg-secondary">
-          <div className="container max-w-4xl">
-            <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-serif text-3xl text-foreground text-center mb-12">{t("Volunteer Stories", "स्वयंसेवक कहानियां")}</motion.h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {volunteerTestimonials.map((vt, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-card rounded-lg p-6 border border-border">
-                  <Quote className="w-8 h-8 text-primary/30 mb-3" />
-                  <p className="text-foreground italic leading-relaxed mb-4">"{t(vt.quote, vt.quoteHi)}"</p>
-                  <p className="font-semibold text-foreground text-sm">{t(vt.name, vt.nameHi)}</p>
-                  <p className="text-muted-foreground text-xs">{t(vt.role, vt.roleHi)}</p>
-                </motion.div>
-              ))}
-            </div>
+        {/* Volunteer Testimonials - Circular Infinite Loop */}
+        <section className="py-16 md:py-24 bg-secondary overflow-hidden">
+          <div className="container max-w-full px-4 md:px-8">
+            <motion.h2 
+              initial={{ opacity: 0 }} 
+              whileInView={{ opacity: 1 }} 
+              viewport={{ once: true }} 
+              className="font-serif text-3xl text-foreground text-center mb-12"
+            >
+              {t("Volunteer Stories", "स्वयंसेवक कहानियां")}
+            </motion.h2>
+            
+            <CircularInfiniteCarousel testimonials={volunteerTestimonials} t={t} />
           </div>
         </section>
 
