@@ -172,7 +172,7 @@ const DonatePage = () => {
         </section>
 
         {/* Donation Section */}
-        <section className="py-16 md:py-24 bg-card">
+        {/* <section className="py-16 md:py-24 bg-card">
           <div className="container max-w-2xl">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-background rounded-lg border border-border p-8">
               <h2 className="font-serif text-2xl text-foreground text-center mb-6">{t("Choose Your Impact", "अपना प्रभाव चुनें")}</h2>
@@ -202,7 +202,7 @@ const DonatePage = () => {
               </div>
             </motion.div>
           </div>
-        </section>
+        </section> */}
 
         {/* QR Code & Bank Details */}
         <section className="py-16 md:py-24 bg-secondary">
@@ -226,10 +226,10 @@ const DonatePage = () => {
                 <div className="space-y-3">
                   {[
                     { label: t("Account Name", "खाता नाम"), value: "Prakriti Foundation" },
-                    { label: t("Account Number", "खाता संख्या"), value: "1234 5678 9012 3456" },
-                    { label: t("Bank Name", "बैंक का नाम"), value: "State Bank of India" },
-                    { label: t("Branch", "शाखा"), value: t("Ghaziabad Main Branch", "गाजियाबाद मुख्य शाखा") },
-                    { label: t("IFSC Code", "IFSC कोड"), value: "SBIN0001234" },
+                    { label: t("Account Number", "खाता संख्या"), value: "33160200000796" },
+                    { label: t("Bank Name", "बैंक का नाम"), value: "Bank of Baroda" },
+                    { label: t("Branch", "शाखा"), value: t("Vasundhara Ghaziabad", "गाजियाबाद मुख्य शाखा") },
+                    { label: t("IFSC Code", "IFSC कोड"), value: "BARBOVASGHA" },
                     { label: t("Account Type", "खाता प्रकार"), value: t("Current Account", "चालू खाता") },
                   ].map((item) => (
                     <div key={item.label} className="flex justify-between items-center border-b border-border pb-2 last:border-0">

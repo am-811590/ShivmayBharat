@@ -100,7 +100,7 @@ const CONFIG = {
       name: "Ravi Shankar Pandey",
       nameHi: "रवि शंकर पांडे",
       role: "Executive Director",
-      roleHi: "कार्यकारी निदेशक",
+      roleHi: "उपाध्यक्ष निदेशक",
       image: raviShankarPandey,
     },
     {
