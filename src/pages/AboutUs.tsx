@@ -589,7 +589,7 @@ const AboutUs = () => {
         </Section>
 
         {/* Timeline Section */}
-        <Section bg="bg-secondary">
+        {/* <Section bg="bg-secondary">
           <div className="container max-w-3xl mx-auto">
             <motion.h2
               initial={{ opacity: 0 }}
@@ -623,7 +623,7 @@ const AboutUs = () => {
               ))}
             </div>
           </div>
-        </Section>
+        </Section> */}
 
         {/* Founder's Message Section */}
         <Section bg="bg-card">
