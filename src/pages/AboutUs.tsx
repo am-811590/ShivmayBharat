@@ -667,7 +667,7 @@ const AboutUs = () => {
                   )}
                 </p>
                 <p className="font-semibold text-foreground">
-                  {t("Shri Durga Prasad Pandey", "श्री दुर्गा प्रसाद पांडे")}
+                  {t("Shri Durga Prasad Pandey", "श्री दुर्गा प्रसाद पांडेय")}
                 </p>
                 <p className="text-muted-foreground text-sm">
                   {t("Founder, Prakriti Foundation", "संस्थापक, प्रकृति फाउंडेशन")}

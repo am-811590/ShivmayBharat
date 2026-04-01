@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube } from "luci
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import NewsletterForm from "./NewsletterForm";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.jpeg";
 
 const Footer = () => {
   const { t } = useLanguage();
