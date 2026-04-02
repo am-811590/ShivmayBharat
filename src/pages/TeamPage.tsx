@@ -3,23 +3,24 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Instagram } from "lucide-react";
-import founderImg from "/team-members/Durga_Prasad_Pandey.jpeg";
 import gauravKumarPandey from "/team-members/Gaurav_Kumar_Pandey.jpeg";
 import raviShankarPandey from "/team-members/Ravi_Shankar_Pandey.jpeg";
 import ranjeetKushwaha from "/team-members/Ranjeet_Kushwaha.jpeg";
 import gitaDevi from "/team-members/Gita_Devi.jpeg";
 import manishPandey from "/team-members/Manish_Pandey.jpeg";
 import jatinNagar from "/team-members/Jatin_Nagar.jpeg";
+import rajeshKumar from "@/assets/Rajesh Kumar.png";
 import kavithaNair from "@/assets/donate-hero.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import aboutHero from "@/assets/galleryHero.png";
+import founderImg from "@/assets/DurgaPrahadPandey.jpeg";
 
 const teamMembers = [
   {
-    name: "Shri Durga Prasad Pandey",
-    nameHi: "श्री दुर्गा प्रसाद पांडेय",
-    role: "Rastreey Adhyaksh, Shivmay Bharat Mission",
-    roleHi: "राष्ट्रीय अध्यक्ष, शिवमय भारत मिशन",
+    name: "Durga Prasad Pandey",
+    nameHi: "दुर्गा प्रसाद पांडेय",
+    role: "Rastreey Adhyaksh, Shivmay Bharat",
+    roleHi: "राष्ट्रीय अध्यक्ष, शिवमय भारत",
     image: founderImg,
     instagram: "#",
     facebook: "#",
@@ -28,8 +29,8 @@ const teamMembers = [
   {
     name: "Ravi Shankar Pandey",
     nameHi: "रवि शंकर पांडे",
-    role: "Executive Director",
-    roleHi: "कार्यकारी निदेशक",
+    role: "Vice President, Prakriti Sena",
+    roleHi: "उपाध्यक्ष, प्रकृति सेना",
     image: raviShankarPandey,
     instagram: "#",
     facebook: "#",
@@ -38,7 +39,7 @@ const teamMembers = [
   {
     name: "Ranjeet Kushwaha",
     nameHi: "रंजीत कुशवाहा",
-    role: "Rashtriya Upadhyaksh, Prakriti sena",
+    role: "National Vice President, Prakriti Sena",
     roleHi: "राष्ट्रीय उपाध्यक्ष, प्रकृति सेना",
     image: ranjeetKushwaha,
     instagram: "#",
@@ -48,8 +49,8 @@ const teamMembers = [
   {
     name: "Gaurav Kumar Pandey",
     nameHi: "गौरव कुमार पांडेय",
-    role: "Pracharak",
-    roleHi: "प्रचारक",
+    role: "Propagandist, Shivmay Bharat",
+    roleHi: "प्रचारक, शिवमय भारत",
     image: gauravKumarPandey,
     instagram: "#",
     facebook: "#",
@@ -58,8 +59,8 @@ const teamMembers = [
   {
     name: "Gita Devi",
     nameHi: "गीता देवी",
-    role: "Rashtriya Mahasachiv, Shivmay Bharat Mission",
-    roleHi: "राष्ट्रीय महासचिव, शिवमय भारत मिशन",
+    role: "National General Secretaryv, Shivmay Bharat",
+    roleHi: "राष्ट्रीय महासचिव, शिवमय भारत",
     image: gitaDevi,
     instagram: "#",
     facebook: "#",
@@ -67,8 +68,8 @@ const teamMembers = [
   },
   {
     name: "Manish Pandey",
-    nameHi: "मनीष पांड",
-    role: "Pradesh Adhyaksh (U.P.), Prakriti Sena",
+    nameHi: "मनीष पांडेय",
+    role: "State President (U.P.), Prakriti Sena",
     roleHi: "प्रदेश अध्यक्ष (उ.प्र.), प्रकृति सेना",
     image: manishPandey,
     instagram: "#",
@@ -78,23 +79,23 @@ const teamMembers = [
   {
     name: "Jatin Nagar",
     nameHi: "जतिन नागर",
-    role: "Vidhi Salahakar",
-    roleHi: "विधि सलाहकार",
+    role: "Legal Advisor, Shivmay Bharat",
+    roleHi: "विधि सलाहकार, शिवमय भारत",
     image: jatinNagar,
     instagram: "#",
     facebook: "#",
     twitter: "#",
   },
-  // {
-  //   name: "Kavitha Nair",
-  //   nameHi: "कविता नायर",
-  //   role: "Volunteer Coordinator",
-  //   roleHi: "स्वयंसेवक समन्वयक",
-  //   image: kavithaNair,
-  //   instagram: "#",
-  //   facebook: "#",
-  //   twitter: "#",
-  // },
+  {
+    name: "Rajesj Kumar",
+    nameHi: "राजेश कुमार",
+    role: "Propagandist, Shivmay Bharat",
+    roleHi: "प्रचारक, शिवमय भारत",
+    image: rajeshKumar,
+    instagram: "#",
+    facebook: "#",
+    twitter: "#",
+  },
 ];
 const TeamPage = () => {
   const { t } = useLanguage();

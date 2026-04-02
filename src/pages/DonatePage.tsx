@@ -10,6 +10,7 @@ import { GAS_URL, RAZORPAY_KEY_ID } from "@/lib/gas";
 import donateHero from "@/assets/donate-hero.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCallback, useEffect } from "react";
+import qrCode from "@/assets/Qr Code.jpeg";
 
 const amounts = [500, 1000, 2500, 5000, 10000];
 
@@ -204,48 +205,113 @@ const DonatePage = () => {
           </div>
         </section> */}
 
-        {/* QR Code & Bank Details */}
-        <section className="py-16 md:py-24 bg-secondary">
-          <div className="container max-w-4xl">
-            <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="font-serif text-3xl text-foreground text-center mb-10">{t("Other Ways to Donate", "दान करने के अन्य तरीके")}</motion.h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-card rounded-lg border border-border p-8 text-center">
-                <QrCode className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-serif text-xl text-foreground mb-3">{t("Scan & Pay via UPI", "UPI से स्कैन और भुगतान करें")}</h3>
-                <div className="w-48 h-48 mx-auto bg-secondary rounded-lg border-2 border-dashed border-border flex items-center justify-center mb-4">
-                  <div className="text-center">
-                    <QrCode className="w-20 h-20 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-xs text-muted-foreground">UPI QR Code</p>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground">UPI ID: <span className="font-semibold text-foreground">prakritifoundation@upi</span></p>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-card rounded-lg border border-border p-8">
-                <Building2 className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-serif text-xl text-foreground mb-4 text-center">{t("Bank Transfer Details", "बैंक ट्रांसफर विवरण")}</h3>
-                <div className="space-y-3">
-                  {[
-                    { label: t("Account Name", "खाता नाम"), value: "Prakriti Foundation" },
-                    { label: t("Account Number", "खाता संख्या"), value: "33160200000796" },
-                    { label: t("Bank Name", "बैंक का नाम"), value: "Bank of Baroda" },
-                    { label: t("Branch", "शाखा"), value: t("Vasundhara Ghaziabad", "गाजियाबाद मुख्य शाखा") },
-                    { label: t("IFSC Code", "IFSC कोड"), value: "BARBOVASGHA" },
-                    { label: t("Account Type", "खाता प्रकार"), value: t("Current Account", "चालू खाता") },
-                  ].map((item) => (
-                    <div key={item.label} className="flex justify-between items-center border-b border-border pb-2 last:border-0">
-                      <span className="text-sm text-muted-foreground">{item.label}</span>
-                      <span className="text-sm font-medium text-foreground">{item.value}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 bg-secondary rounded-md p-3 flex items-center gap-2">
-                  <CreditCard className="w-4 h-4 text-primary shrink-0" />
-                  <p className="text-xs text-muted-foreground">{t("Please share transaction details at", "कृपया लेनदेन विवरण साझा करें")} <span className="text-foreground">donate@prakritifoundation.org</span></p>
-                </div>
-              </motion.div>
+        import qrCode from "@/assets/Qr Code.jpeg";
+
+{/* QR Code & Bank Details */}
+<section className="py-16 md:py-24 bg-secondary">
+  <div className="container max-w-4xl">
+    <motion.h2
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="font-serif text-3xl text-foreground text-center mb-10"
+    >
+      {t("Ways to Donate", "दान करने के तरीके")}
+    </motion.h2>
+
+    <div className="grid md:grid-cols-2 gap-8">
+      
+      {/* UPI QR Code */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="bg-card rounded-lg border border-border p-8 text-center"
+      >
+        <QrCode className="w-12 h-12 text-primary mx-auto mb-4" />
+
+        <h3 className="font-serif text-xl text-foreground mb-3">
+          {t("Scan & Pay via UPI", "UPI से स्कैन और भुगतान करें")}
+        </h3>
+
+        {/* ✅ Imported QR Code */}
+        <div className="w-48 h-48 mx-auto mb-4">
+          <img
+            src={qrCode}
+            alt="UPI QR Code"
+            className="w-full h-full object-contain rounded-lg border border-border cursor-pointer hover:scale-105 transition"
+          />
+        </div>
+
+        {/* Download QR */}
+        <a
+          href={qrCode}
+          download
+          className="text-sm text-primary underline block mb-2"
+        >
+          {t("Download QR Code", "QR कोड डाउनलोड करें")}
+        </a>
+
+        <p className="text-sm text-muted-foreground">
+          UPI ID:{" "}
+          <span className="font-semibold text-foreground">
+            prakritifoundation@upi
+          </span>
+        </p>
+      </motion.div>
+
+      {/* Bank Details */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="bg-card rounded-lg border border-border p-8"
+      >
+        <Building2 className="w-12 h-12 text-primary mx-auto mb-4" />
+
+        <h3 className="font-serif text-xl text-foreground mb-4 text-center">
+          {t("Bank Transfer Details", "बैंक ट्रांसफर विवरण")}
+        </h3>
+
+        <div className="space-y-3">
+          {[
+            { label: t("Account Name", "खाता नाम"), value: "Prakriti Foundation" },
+            { label: t("Account Number", "खाता संख्या"), value: "33160200000796" },
+            { label: t("Bank Name", "बैंक का नाम"), value: "Bank of Baroda" },
+            { label: t("Branch", "शाखा"), value: t("Vasundhara Ghaziabad", "गाजियाबाद मुख्य शाखा") },
+            { label: t("IFSC Code", "IFSC कोड"), value: "BARBOVASGHA" },
+            { label: t("Account Type", "खाता प्रकार"), value: t("Current Account", "चालू खाता") },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="flex justify-between items-center border-b border-border pb-2 last:border-0"
+            >
+              <span className="text-sm text-muted-foreground">
+                {item.label}
+              </span>
+              <span className="text-sm font-medium text-foreground">
+                {item.value}
+              </span>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
+
+        <div className="mt-4 bg-secondary rounded-md p-3 flex items-center gap-2">
+          <CreditCard className="w-4 h-4 text-primary shrink-0" />
+          <p className="text-xs text-muted-foreground">
+            {t(
+              "Please share transaction details at",
+              "कृपया लेनदेन विवरण साझा करें"
+            )}{" "}
+            <span className="text-foreground">
+              donate@prakritifoundation.org
+            </span>
+          </p>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
         {/* Transparency */}
         <section className="py-16 bg-background">
