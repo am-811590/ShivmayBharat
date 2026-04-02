@@ -12,12 +12,12 @@ import projectEnergy from "@/assets/project-energy.jpg";
 import missionImage from "@/assets/mission-image.jpg";
 
 const images = [
-  { src: "/selected plantation/WhatsApp Image 2024-04-06 at 7.16.22 AM (1)_result.webp", alt: "Early morning plantation", altHi: "प्रातःकालीन वृक्षारोपण" },
-  { src: "/selected plantation/WhatsApp Image 2024-04-06 at 7.08.55 AM_result.webp", alt: "Mass tree planting", altHi: "मास वृक्षारोपण" },
-  { src: "/selected plantation/WhatsApp Image 2024-04-06 at 7.16.22 AM_result.webp", alt: "Sapling distribution", altHi: "पौध वितरण" },
-  { src: "/selected plantation/WhatsApp Image 2024-04-06 at 7.08.58 AM_result.webp", alt: "Field plantation work", altHi: "क्षेत्र वृक्षारोपण कार्य" },
-  { src: "/selected plantation/DSC_0980_result.webp", alt: "Tree planting session", altHi: "वृक्षारोपण सत्र" },
-  { src: "/selected plantation/DSC_0895_result.webp", alt: "Landscape plantation", altHi: "परिदृश्य वृक्षारोपण" },
+  { src: "./selected plantation/WhatsApp Image 2024-04-06 at 7.16.22 AM (1)_result.webp", alt: "Early morning plantation", altHi: "प्रातःकालीन वृक्षारोपण" },
+  { src: "./selected plantation/WhatsApp Image 2024-04-06 at 7.08.55 AM_result.webp", alt: "Mass tree planting", altHi: "मास वृक्षारोपण" },
+  { src: "./selected plantation/WhatsApp Image 2024-04-06 at 7.16.22 AM_result.webp", alt: "Sapling distribution", altHi: "पौध वितरण" },
+  { src: "./selected plantation/WhatsApp Image 2024-04-06 at 7.08.58 AM_result.webp", alt: "Field plantation work", altHi: "क्षेत्र वृक्षारोपण कार्य" },
+  { src: "./selected plantation/DSC_0980_result.webp", alt: "Tree planting session", altHi: "वृक्षारोपण सत्र" },
+  { src: "./selected plantation/DSC_0895_result.webp", alt: "Landscape plantation", altHi: "परिदृश्य वृक्षारोपण" },
 ];
 
 

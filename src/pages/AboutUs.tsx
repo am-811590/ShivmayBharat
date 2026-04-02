@@ -19,7 +19,7 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useEffect, useCallback, useState } from "react";
 
-import founderImg from "/team-members/Durga_Prasad_Pandey.jpeg";
+import founderImg from "@/assets/DurgaPrahadPandey.jpeg";
 import gauravKumarPandey from "/team-members/Gaurav_Kumar_Pandey.jpeg";
 import raviShankarPandey from "/team-members/Ravi_Shankar_Pandey.jpeg";
 import ranjeetKushwaha from "/team-members/Ranjeet_Kushwaha.jpeg";
@@ -35,10 +35,10 @@ const CONFIG = {
   // Auto-slider settings
   slider: {
     images: [
-      "/selected plantation/IMG-20190421-WA0018_result.webp",
-      "/selected plantation/IMG_20220724_103409_result.webp",
-      "/selected plantation/IMG-20190427-WA0046_result.webp",
-      "/selected plantation/IMG_20180930_201556 - Copy_result.webp",
+      "./selected plantation/IMG-20190421-WA0018_result.webp",
+      "./selected plantation/IMG_20220724_103409_result.webp",
+      "./selected plantation/IMG-20190427-WA0046_result.webp",
+      "./selected plantation/IMG_20180930_201556 - Copy_result.webp",
     ],
     interval: 3000,
     transitionDuration: 1000,
@@ -91,8 +91,8 @@ const CONFIG = {
     {
       name: "Shri Durga Prasad Pandey",
       nameHi: "श्री दुर्गा प्रसाद पांडे",
-      role: "Rastreey Adhyaksh, Shivmay Bharat Mission",
-      roleHi: "राष्ट्रीय अध्यक्ष, शिवमय भारत मिशन",
+      role: "Rastreey Adhyaksh, Shivmay Bharat",
+      roleHi: "राष्ट्रीय अध्यक्ष, शिवमय भारत",
       image: founderImg,
       isFounder: true,
     },

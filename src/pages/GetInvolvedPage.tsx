@@ -400,7 +400,7 @@ const VolunteerForm = ({ t }: { t: (en: string, hi: string) => string }) => {
   const errorClass = "text-destructive text-xs mt-1";
 
   return (
-    <div className="p-8 flex flex-col justify-center space-y-4">
+    <div className="p-8 flex flex-col justify-center space-y-4" id="volunteer-signup-form">
       <h3 className="font-serif text-xl text-foreground mb-2">{t("Join Our Green Movement", "हमारे हरित आंदोलन से जुड़ें")}</h3>
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
@@ -489,6 +489,14 @@ const GetInvolvedPage = () => {
     }
   };
 
+  const scrollToVolunteerForm = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    const element = document.getElementById("volunteer-signup-form");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -514,7 +522,7 @@ const GetInvolvedPage = () => {
                   <o.icon className="w-10 h-10 mx-auto mb-4 text-primary" />
                   <h3 className="font-serif text-xl text-foreground mb-2">{t(o.title, o.titleHi)}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t(o.desc, o.descHi)}</p>
-                  <Button size="sm" onClick={scrollToOpportunities}>{t(o.cta, o.ctaHi)}</Button>
+                  <Button size="sm" onClick={scrollToVolunteerForm}>{t(o.cta, o.ctaHi)}</Button>
                 </motion.div>
               ))}
             </div>
@@ -538,9 +546,9 @@ const GetInvolvedPage = () => {
         </section>
 
         {/* Sign Up Form */}
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-16 md:py-24 bg-card" id="signup-section">
           <div className="container">
-            <h2 className="font-serif text-3xl text-foreground text-center mb-10">{t("Volunteer Sign-Up", "स्वयंसेवक पंजीकरण")}</h2>
+            <h2 className="font-serif text-3xl text-foreground text-center mb-10">{t("Join the Movement", "स्वयंसेवक पंजीकरण")}</h2>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto bg-secondary rounded-xl border border-border overflow-hidden">
               <div className="grid md:grid-cols-2">
                 <div className="md:h-auto">

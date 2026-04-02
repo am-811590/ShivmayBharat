@@ -8,11 +8,11 @@ import { TreePine, Droplets, Building, Sprout, Sun, BookOpen, ArrowRight } from 
 import { useLanguage } from "@/contexts/LanguageContext";
 
 // Real plantation images from public/selected plantation
-const agroImg = "/selected plantation/IMG_20180614_082512_result.webp";
-const riverImg = "/selected plantation/IMG-20190427-WA0046_result.webp";
-const urbanImg = "/selected plantation/IMG_20180618_095207_result.webp";
-const waterImg = "/selected plantation/IMG-20190505-WA0029_result.webp";
-const energyImg = "/selected plantation/IMG_20190603_094554 - Copy_result.webp";
+const agroImg = "./selected plantation/IMG_20180614_082512_result.webp";
+const riverImg = "./selected plantation/IMG-20190427-WA0046_result.webp";
+const urbanImg = "./selected plantation/IMG_20180618_095207_result.webp";
+const waterImg = "./selected plantation/IMG-20190505-WA0029_result.webp";
+const energyImg = "./selected plantation/IMG_20190603_094554 - Copy_result.webp";
 import heroBanner from "@/assets/ourWorkHero.jpg";
 const programs = [
   { 
@@ -87,7 +87,7 @@ const programs = [
     descHi: "हम कार्यशालाओं और जागरूकता कार्यक्रमों के माध्यम से छात्रों और समुदायों को पर्यावरण के प्रति जागरूक करते हैं। जटिल विषयों को सरल बनाकर हम लोगों को छोटे-छोटे कदम उठाने के लिए प्रेरित करते हैं। स्कूल परिवर्तन के केंद्र बनते हैं और युवा जिम्मेदार नागरिक बनते हैं। यही ज्ञान समाज में फैलता है और बदलाव की शुरुआत करता है।",
     impact: "10,000+ students reached",
     impactHi: "10,000+ छात्र पहुंचे",
-    img: "/selected plantation/IMG-20190717-WA0056_result.webp",
+    img: "./selected plantation/IMG-20190717-WA0056_result.webp",
     imageDesc: "Awareness sessions in communities and schools.",
     imageDescHi: "समुदायों और स्कूलों में जागरूकता कार्यक्रम।"
   },
